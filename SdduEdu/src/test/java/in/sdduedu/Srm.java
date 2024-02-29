@@ -18,11 +18,9 @@ public class Srm {
 		driver.manage().window().maximize();
 		
 		driver.get(ulr);
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 	   new SdduSteps().iOpenLoginPage();
-	   Thread.sleep(2000);
 		new SdduSteps().sdsTransection();
-		Thread.sleep(2000);
 		 new SdduSteps().iFillDirectPo();
 	   
 		driver.close();
