@@ -1,7 +1,9 @@
 package in.sdduedu;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class SdduSteps extends Srm {
 
@@ -11,9 +13,14 @@ public class SdduSteps extends Srm {
 	By sdstrans = By.xpath("//span[text()='  SRM Transaction']/ancestor::a/span");
 	By directpo = By.xpath("//span[text()='5-    Direct PO']/ancestor::a");
 	By supppliername = By.xpath("//input[@name='ddlBasicInformation_SupplierName']/../../td[2]");
-	By supppliernametext = By.xpath("//input[text()='ddlBasicInformation_SupplierName']");
+	By supppliernametext = By.xpath("//li[text()='A3S ENTERPRISES']");
 	By intedno = By.xpath("//input[@id='txtBasicInformation_IndentNo']");
 	By dept1 = By.xpath("//input[@name='ddlBasicInformation_Department']/../../td[2]");
+	By dept1value = By.xpath("//li[text()='Anaesthesiology']");
+	By billingsite = By.xpath("//input[@id='ddlBasicInformation_BillingSite_Input']/../../td[2]");
+	By billingsitetext = By.xpath("//li[text()='SRI DEVARAJ URS ACADEMY OF HIGHER EDUCATION & RESEARCH']");
+	By itemtext = By.xpath("//body[@onload='getDivs()']//div[@class='rcbScroll rcbWidth']/ul/li[@class= 'rcbHovered']");
+
 	By Delevryaddress = By.xpath("//textarea[@id='txtBasicInformation_DelAddress']");
 	By totaopo = By.xpath("//input[@id='txtBasicInformation_POTotal']");
 	By POcalButton = By.xpath("//input[@id='btnCalculate']");
@@ -22,57 +29,128 @@ public class SdduSteps extends Srm {
 	By Rate = By.xpath("//input[@id='dgItemDetails_ctl00_ctl04_rgEditRate']");
 	By Savebuttun = By.xpath("//input[@id='ImageButton5']");
 
-	By billingsite = By.xpath("//input[@id='ddlBasicInformation_BillingSite_Input']/../../td[2]");
+	
 	By intentdate = By.xpath("//input[@id='rdpBasicInformation_IndentDate_dateInput']");
-	By Deleverydate = By.xpath("//input[@id='rdpBasicInformation_IndentDate_dateInput']");
-
-
+	By Deleverydate = By.xpath("//input[@id='rdpBasicInformation_CommonDeliveryDate_dateInput']");
+	By framename =  By.xpath("//iframe[@name='PagePane']");
+	By itemname = By.xpath("//input[@name='dgItemDetails$ctl00$ctl04$rgEditItem']");
+	By warehoue = By.xpath("//input[@name='ddlBasicInformation_CommonDeliveryWarehouse']/../../td[2]");
+	By warehouevalue = By.xpath("//li[text()='Engineering Store Inward']");
 
 	public void iOpenLoginPage() throws Exception {
-
-		driver.findElement(usernametxt).sendKeys("c1439");
+		
+		CommonActions.igetElementandType(usernametxt,"c1439");
+		CommonActions.igetElementandType(passwordtxt,"passwd@1");
+		CommonActions.igetElement(button);
+		CommonActions.igetElement(sdstrans);
+		CommonActions.igetElement(directpo);
+		
+		driver.switchTo().frame(driver.findElement(framename));
+		CommonActions.igetElement(supppliername);
+		CommonActions.igetElement(supppliernametext);
+		CommonActions.igetElementandType(intedno,"1233455");
+		CommonActions.igetElement(warehoue);
+		CommonActions.igetElement(warehouevalue);
+		CommonActions.igetElement(dept1);
+		
+		CommonActions.igetElement(dept1value);
+		CommonActions.igetElement(billingsite);
+		CommonActions.igetElement(billingsitetext);
+		
+		CommonActions.igetElementandType(intentdate,"07/03/2024");
+		CommonActions.igetElementandType(Deleverydate,"20/03/2024");
+//		CommonActions.igetElementandType(Delevryaddress,"hjhfgdasfshrd");
+		CommonActions.igetElementandType(itemname, "ISOLATION BRASS BALL VALVES FOR MEDICAL OXYGEN USAGE WITH SLIP ON BRASS END ADAPTERS AS PER EN331:1998 GAS APPROVED. MAKE-IBP CONEX-UK/ITAP");
+		CommonActions.igetElement(item);
+		
+		
 		Thread.sleep(2000);
-		driver.findElement(passwordtxt).sendKeys("passwd@1");
+		
+		try {
+			System.out.println("Inside try block");
+//			CommonActions.igetElementandType(Qty,"10");
+		CommonActions.igetElement(Qty);
+		Thread.sleep(10000);
+		Alert alt = driver.switchTo().alert();
+		alt.accept();
+		CommonActions.igetElementandType(Qty,"10");
+		CommonActions.igetElementandType(Rate,"20");
+		
+		}catch (Exception e) {
+			System.out.println("Inside catch block");
+			CommonActions.igetElementandType(Qty,"10");
+			CommonActions.igetElementandType(Rate,"20");
+		}
+		
+		
+		
+//		
+		
+//		CommonActions.igetElement(itemtext);	
+//		CommonActions.igetElement(totaopo);
+		Thread.sleep(10000);
+		CommonActions.igetElement(POcalButton);
 		Thread.sleep(2000);
-		driver.findElement(button).click();
-	}
-
-	public void sdsTransection() throws Exception {
-		Thread.sleep(2000);
-		driver.findElement(sdstrans).click();
-		Thread.sleep(2000);
-		driver.findElement(directpo).click();
-		Thread.sleep(5000);
-	}
-
-	public  void iFillDirectPo() throws InterruptedException {
-		driver.findElement(supppliername).click();
-		driver.findElement(supppliernametext).click();
+		CommonActions.igetElement(Savebuttun);
 		
-		driver.findElement(intedno).sendKeys("1233455");
-		
-		driver.findElement(dept1).click();
-		
-		driver.findElement(Delevryaddress).sendKeys("hjhfgdasfshrd");
-		
-		
-		driver.findElement(intentdate).sendKeys("07/03/2024");
-		
-		driver.findElement(Deleverydate).sendKeys("20/03/2024");
-		
-		driver.findElement(billingsite).click();
-		
-		driver.findElement(item).click();
-		
-		driver.findElement(Qty).sendKeys("10");
-		
-		driver.findElement(Rate).sendKeys("20");
-		
-		//driver.findElement(totaopo).click();
-		
-		driver.findElement(POcalButton).click();
-		
-		driver.findElement(Savebuttun).click();
+//		driver.findElement(usernametxt).sendKeys("c1439");
+//		Thread.sleep(2000);
+//		driver.findElement(passwordtxt).sendKeys("passwd@1");
+//		Thread.sleep(2000);
+//		driver.findElement(button).click();
+//	}
+//
+//	public void sdsTransection() throws Exception {
+//		Thread.sleep(2000);
+//		driver.findElement(sdstrans).click();
+//		Thread.sleep(2000);
+//		driver.findElement(directpo).click();
+//		Thread.sleep(5000);
+//	}
+//
+//	public  void iFillDirectPo() throws InterruptedException {
+//		System.out.println("fghjkdfghj");
+//		driver.switchTo().frame(driver.findElement(framename));
+//		driver.findElement(supppliername).click();
+//		
+//		Thread.sleep(2000);
+//		System.out.println("fghjkdfghj");
+//		driver.findElement(supppliernametext).click();
+//		Thread.sleep(2000);
+//		
+//		driver.findElement(intedno).sendKeys("1233455");
+//		Thread.sleep(2000);
+//		driver.findElement(dept1).click();
+//		Thread.sleep(2000);
+//		driver.findElement(dept1text).click();
+//		Thread.sleep(2000);
+//		driver.findElement(billingsite).click();
+//		Thread.sleep(2000);
+//		driver.findElement(billingsitetext).click();
+//		Thread.sleep(2000);
+//		driver.findElement(intentdate).sendKeys("07/03/2024");
+//		Thread.sleep(2000);
+//		driver.findElement(Deleverydate).sendKeys("20/03/2024");
+//		Thread.sleep(2000);
+//		driver.findElement(Delevryaddress).sendKeys("hjhfgdasfshrd");
+//		Thread.sleep(2000);
+//		
+//		
+//		driver.findElement(item).click();
+//		Thread.sleep(4000);
+//		driver.findElement(itemtext).click();
+//		Thread.sleep(2000);
+//		driver.findElement(Qty).sendKeys("10");
+//		Thread.sleep(2000);
+//		driver.findElement(Rate).sendKeys("20");
+//		Thread.sleep(2000);
+//		
+//		//driver.findElement(totaopo).click();
+//		
+//		driver.findElement(POcalButton).click();
+//		Thread.sleep(5000);
+//		
+//		driver.findElement(Savebuttun).click();
 	}
 
 }

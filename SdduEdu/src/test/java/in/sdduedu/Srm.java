@@ -20,10 +20,10 @@ public class Srm {
 		driver.get(ulr);
 		Thread.sleep(5000);
 	   new SdduSteps().iOpenLoginPage();
-		new SdduSteps().sdsTransection();
-		 new SdduSteps().iFillDirectPo();
-	   
-		driver.close();
+//		new SdduSteps().sdsTransection();
+//		 new SdduSteps().iFillDirectPo();
+	   Thread.sleep(5000);
+//		driver.close();
 		
 		
 		
