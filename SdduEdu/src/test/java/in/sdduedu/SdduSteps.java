@@ -13,7 +13,7 @@ public class SdduSteps extends Srm {
 	By sdstrans = By.xpath("//span[text()='  SRM Transaction']/ancestor::a/span");
 	By directpo = By.xpath("//span[text()='5-    Direct PO']/ancestor::a");
 	By supppliername = By.xpath("//input[@name='ddlBasicInformation_SupplierName']/../../td[2]");
-	By supppliernametext = By.xpath("//li[text()='A3S ENTERPRISES']");
+	By supppliernametext = By.xpath("//li[text()='Aarunya Care Pvt Ltd']");
 	By intedno = By.xpath("//input[@id='txtBasicInformation_IndentNo']");
 	By dept1 = By.xpath("//input[@name='ddlBasicInformation_Department']/../../td[2]");
 	By dept1value = By.xpath("//li[text()='Anaesthesiology']");
@@ -36,7 +36,11 @@ public class SdduSteps extends Srm {
 	By itemname = By.xpath("//input[@name='dgItemDetails$ctl00$ctl04$rgEditItem']");
 	By warehoue = By.xpath("//input[@name='ddlBasicInformation_CommonDeliveryWarehouse']/../../td[2]");
 	By warehouevalue = By.xpath("//li[text()='Engineering Store Inward']");
-
+	By suppliersearchbtn = By.xpath("//input[@name='btnShowHide']");
+	By suppliernamesrcarrow = By.xpath("//input[@name='ddlSearchFilter_Supplier']/../../td[2]");
+	By suppliernamesrctext = By.xpath("//div[@id='ddlSearchFilter_Supplier_DropDown']//li[text()='Aarunya Care Pvt Ltd']");
+	By searchbtn = By.xpath("//input[@name='btnSearch']");
+	
 	public void iOpenLoginPage() throws Exception {
 		
 		CommonActions.igetElementandType(usernametxt,"c1439");
@@ -46,8 +50,7 @@ public class SdduSteps extends Srm {
 		CommonActions.igetElement(directpo);
 		
 		driver.switchTo().frame(driver.findElement(framename));
-		CommonActions.igetElement(supppliername);
-		CommonActions.igetElement(supppliernametext);
+		
 		CommonActions.igetElementandType(intedno,"1233455");
 		CommonActions.igetElement(warehoue);
 		CommonActions.igetElement(warehouevalue);
@@ -60,14 +63,15 @@ public class SdduSteps extends Srm {
 		CommonActions.igetElementandType(intentdate,"07/03/2024");
 		CommonActions.igetElementandType(Deleverydate,"20/03/2024");
 //		CommonActions.igetElementandType(Delevryaddress,"hjhfgdasfshrd");
-		CommonActions.igetElementandType(itemname, "ISOLATION BRASS BALL VALVES FOR MEDICAL OXYGEN USAGE WITH SLIP ON BRASS END ADAPTERS AS PER EN331:1998 GAS APPROVED. MAKE-IBP CONEX-UK/ITAP");
+		CommonActions.igetElementandType(itemname, " 35 SQMM COPPER LUGS");
 		CommonActions.igetElement(item);
+		
 		
 		
 		Thread.sleep(2000);
 		
 		try {
-			System.out.println("Inside try block");
+			//System.out.println("Inside try block");
 //			CommonActions.igetElementandType(Qty,"10");
 		CommonActions.igetElement(Qty);
 		Thread.sleep(10000);
@@ -77,13 +81,13 @@ public class SdduSteps extends Srm {
 		CommonActions.igetElementandType(Rate,"20");
 		
 		}catch (Exception e) {
-			System.out.println("Inside catch block");
+			//System.out.println("Inside catch block");
 			CommonActions.igetElementandType(Qty,"10");
 			CommonActions.igetElementandType(Rate,"20");
 		}
-		
-		
-		
+				
+		CommonActions.igetElement(supppliername);
+		CommonActions.igetElement(supppliernametext);
 //		
 		
 //		CommonActions.igetElement(itemtext);	
@@ -92,6 +96,25 @@ public class SdduSteps extends Srm {
 		CommonActions.igetElement(POcalButton);
 		Thread.sleep(2000);
 		CommonActions.igetElement(Savebuttun);
+		Thread.sleep(8000);
+		CommonActions.igetElement(suppliersearchbtn);
+		Thread.sleep(2000);
+		CommonActions.igetElement(suppliernamesrcarrow);
+		Thread.sleep(4000);
+		
+		String str = driver.findElement(suppliernamesrctext).getText();
+		System.out.println("Supplier name Is   "+str);
+		if(str.equals("Aarunya Care Pvt Ltd")) {
+			CommonActions.igetElement(suppliernamesrctext);
+			System.out.println("Supplier name is Matched...........");
+		}
+		else {
+			System.out.println("Supplier name is notMatched...........");
+		}
+		
+		
+		CommonActions.igetElement(searchbtn);
+		Thread.sleep(5000);
 		
 //		driver.findElement(usernametxt).sendKeys("c1439");
 //		Thread.sleep(2000);
