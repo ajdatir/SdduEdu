@@ -40,6 +40,7 @@ public class SdduSteps extends Srm {
 	By suppliernamesrcarrow = By.xpath("//input[@name='ddlSearchFilter_Supplier']/../../td[2]");
 	By suppliernamesrctext = By.xpath("//div[@id='ddlSearchFilter_Supplier_DropDown']//li[text()='Aarunya Care Pvt Ltd']");
 	By searchbtn = By.xpath("//input[@name='btnSearch']");
+	By okbtn = By.xpath("//span[text()='OK']/ancestor::a");
 	
 	public void iOpenLoginPage() throws Exception {
 		
@@ -64,14 +65,21 @@ public class SdduSteps extends Srm {
 		CommonActions.igetElementandType(Deleverydate,"20/03/2024");
 //		CommonActions.igetElementandType(Delevryaddress,"hjhfgdasfshrd");
 		CommonActions.igetElementandType(itemname, " 35 SQMM COPPER LUGS");
-		CommonActions.igetElement(item);
+		Thread.sleep(3000);
+		CommonActions.igetElement(item);		
+		Thread.sleep(3000);
 		
+		CommonActions.igetElement(Qty);
+		Thread.sleep(5000);
+		driver.switchTo().alert().accept();
+		Thread.sleep(3000);
+//		CommonActions.igetElementandType(Qty,"10");
+//		Thread.sleep(3000);
+//		CommonActions.igetElementandType(Rate,"20");
 		
-		
-		Thread.sleep(2000);
-		
+//		
 		try {
-			//System.out.println("Inside try block");
+			System.out.println("Inside try block");
 //			CommonActions.igetElementandType(Qty,"10");
 		CommonActions.igetElement(Qty);
 		Thread.sleep(10000);
@@ -81,10 +89,12 @@ public class SdduSteps extends Srm {
 		CommonActions.igetElementandType(Rate,"20");
 		
 		}catch (Exception e) {
-			//System.out.println("Inside catch block");
+			System.out.println("Inside catch block");
 			CommonActions.igetElementandType(Qty,"10");
 			CommonActions.igetElementandType(Rate,"20");
 		}
+		
+		
 				
 		CommonActions.igetElement(supppliername);
 		CommonActions.igetElement(supppliernametext);
@@ -96,7 +106,10 @@ public class SdduSteps extends Srm {
 		CommonActions.igetElement(POcalButton);
 		Thread.sleep(2000);
 		CommonActions.igetElement(Savebuttun);
+		Thread.sleep(2000);
+		CommonActions.igetElement(okbtn);
 		Thread.sleep(8000);
+		//driver.switchTo().alert().accept();
 		CommonActions.igetElement(suppliersearchbtn);
 		Thread.sleep(2000);
 		CommonActions.igetElement(suppliernamesrcarrow);
